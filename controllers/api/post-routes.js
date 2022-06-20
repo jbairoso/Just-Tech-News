@@ -93,8 +93,8 @@ router.post("/", (req, res) => {
     post_url: req.body.post_url,
     user_id: req.body.user_id,
   })
-    .then((dbPostData) => res.json(dbPostData))
-    .catch((err) => {
+    .then(dbPostData => res.json(dbPostData))
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
@@ -104,8 +104,8 @@ router.post("/", (req, res) => {
 router.put("/upvote", (req, res) => {
   // custom static method created in models/Post.js
   Post.upvote(req.body, { Vote })
-    .then((updatedPostData) => res.json(updatedPostData))
-    .catch((err) => {
+    .then(updatedPostData => res.json(updatedPostData))
+    .catch(err => {
       console.log(err);
       res.status(400).json(err);
     });
@@ -122,14 +122,14 @@ router.put("/:id", (req, res) => {
       },
     }
   )
-    .then((dbPostData) => {
+    .then(dbPostData => {
       if (!dbPostData) {
         res.status(404).json({ message: "No post found with this id" });
         return;
       }
       res.json(dbPostData);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
@@ -141,14 +141,14 @@ router.delete("/:id", (req, res) => {
       id: req.params.id,
     },
   })
-    .then((dbPostData) => {
+    .then(dbPostData => {
       if (!dbPostData) {
         res.status(404).json({ message: "No post found with this id" });
         return;
       }
       res.json(dbPostData);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
